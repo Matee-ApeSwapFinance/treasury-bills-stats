@@ -3,7 +3,11 @@ import BillsContext from '../../context/BillsContext'
 import getBills from "../../services/getBills"
 import Lottie from 'lottie-react'
 import Spinner from '../../assets/spinner.json'
-import dropUnwantedBills from "../../services/dropUnwantedBills"
+// import dropUnwantedBills from "../../services/dropUnwantedBills"
+import Plot from 'react-plotly.js'
+import calculateDataForPlots from "../../services/calculateDataForPlots"
+import { useState } from "react"
+
 
 const options = {
   animationData: Spinner,
@@ -16,6 +20,18 @@ const options = {
 
 export default function Stats() {
   const {bills, setBills, loading, setLoading} = useContext(BillsContext)
+
+  const [datesArray, setDatesArray] = useState([])
+  const [accumUniqueWallets, setAccumUniqueWallets] = useState([])
+  const [dailyUniqueWallets, setDailyUniqueWallets] = useState([])
+  const [dailyAccumBillsSold, setDailyAccumBillsSold] = useState([])
+  const [dailyBillsSold, setDailyBillsSold] = useState([])
+  const [accumAcquiredValue, setAccumAcquiredValue] = useState([])
+  const [dailyAcquiredValue, setDailyAcquiredValue] = useState([])
+  const [accumVestedValue, setAccumVestedValue] = useState([])
+  const [dailyVestedValue, setDailyVestedValue] = useState([])
+  const [dailyRoi, setDailyRoi] = useState([])
+  const [overallRoi, setOverallRoi] = useState([])
 
   const handleUpdate = async() => {
     setLoading(true)
@@ -34,6 +50,21 @@ export default function Stats() {
     }
   }, [])
 
+  useEffect(() => {
+    const {dailyDates, dailyAccumWallets, dailyWallets, dailyAccumNumBills, dailyNumBills, dailyAccumDollarAcquiredValue, dailyDollarAcquiredValue, dailyAccumDollarVestedValue, dailyDollarVestedValue, dailyOverallRoi, averageOverallRoi} = calculateDataForPlots(bills)
+    setDatesArray(dailyDates)
+    setAccumUniqueWallets(dailyAccumWallets)
+    setDailyUniqueWallets(dailyWallets)
+    setDailyAccumBillsSold(dailyAccumNumBills)
+    setDailyBillsSold(dailyNumBills)
+    setAccumAcquiredValue(dailyAccumDollarAcquiredValue)
+    setDailyAcquiredValue(dailyDollarAcquiredValue)
+    setAccumVestedValue(dailyAccumDollarVestedValue)
+    setDailyVestedValue(dailyDollarVestedValue)
+    setDailyRoi(dailyOverallRoi)
+    setOverallRoi(averageOverallRoi)
+  }, [bills])
+
   return (
     loading
       ? <div className="loadingPage">
@@ -42,23 +73,474 @@ export default function Stats() {
         </div>
       : <div>
           <h1>Bill´s Overall Stats</h1>
-          <div>🚧 Under construction 🚧</div>
-          <div>Unique wallets who purchased Bills</div>
-          <div>Total number of Bills deployed</div>
-          <div>Total number of Bills purchases</div>
-          <div>Total acquired USD amount</div>
-          <div>Total vested USD amount</div>
-          <div>Overall average ROI</div>
-          {
-            /*
-            Further ideas:
-            Evolution of unique wallets interacting over time
-            Evolution of Total number of bills purchased over time
-            Evolution of total acquired USD amount over time
-            Evolution of total vested USD amount over time
-            Evolution of overall average ROI over time
-            */
-          }
-        </div>
+          <div className="graphsContainer">
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: accumUniqueWallets,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#09f'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Unique Wallets",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Number of Unique Wallets Who Ever Purchased Bills', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyUniqueWallets,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#4cff05'
+                  }
+                }
+              ]}
+              layout={ {
+              margin: {
+                l: 80,
+                r: 80,
+                t: 100,
+                b: 60
+              },
+              xaxis: {
+                automargin: true,
+                showgrid: false,
+                title: {
+                  text: 'Date',
+                  standoff: 15
+                },
+                tickfont: {
+                  size: 10
+                }
+              },
+              yaxis: {
+                automargin: true,
+                showgrid: false,
+                rangemode: 'tozero',
+                autorange: true,
+                title: {
+                  text: "Unique Wallets Per Day",
+                  standoff: 10,
+                }
+              },
+                width: 900, height: 500, title: 'Wallets Purchasing Bills Each Day', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyAccumBillsSold,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#ffa600'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Bills Sold",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Accumulated Number of Bills Sold Over Time', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyBillsSold,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#e22f0f'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Bills Sold",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Daily Number of Bills Sold', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: accumAcquiredValue,
+                  type: 'bar',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#b10fe2'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  tickprefix: '$',
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "USD Value",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Accumulated USD Value Sold By Bills (Total Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyAcquiredValue,
+                  type: 'bar',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#4e0fe2'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  tickprefix: '$',
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "USD Value",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'USD Value Sold By Bills on Each Day (Daily Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: accumVestedValue,
+                  type: 'bar',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#6a0fe2'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  tickprefix: '$',
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "USD Value",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Accumulated USD Value Payed Out to Bills Buyers (Total Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyVestedValue,
+                  type: 'bar',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#2c0163'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  tickprefix: '$',
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "USD Value",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'USD Value Payed Out to Bills Buyers on Each Day (Daily Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyRoi,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#00be3f'
+                  }
+                }
+              ]}
+              layout={ {
+                shapes: [
+                  {
+                      type: 'line',
+                      xref: 'paper',
+                      x0: 0,
+                      y0: overallRoi,
+                      x1: 1,
+                      y1: overallRoi,
+                      line:{
+                          color: 'rgb(66, 0, 121)',
+                          width: 2,
+                      }
+                  }
+                ],
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  tickprefix: '%',
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "ROI",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: `ROI Per Day (Daily Acquired Value / Daily Vested Value) | Average ROI: %${overallRoi}`,
+                plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            {console.log(bills.length)}
+            </div>
+          </div>
   )
 }
+
+/*
+Further ideas:
+Evolution of unique wallets interacting over time - LISTO
+Daily wallets purchasing bills - LISTO
+Evolution of Total number of bills purchased over time - LISTO
+Daily number of bills sold - LISTO
+Evolution of total acquired USD amount over time - LISTO
+Daily acquired usd value - LISTO
+Evolution of total vested USD amount over time - LISTO
+Daily vested usd value - LISTO
+Daily Roi - LISTO
+*/

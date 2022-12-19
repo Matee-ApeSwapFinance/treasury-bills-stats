@@ -64,10 +64,14 @@ export default function({ params }) {
               <div className="spotlightInformation">
                 <SpotlightSummary
                   contractDetails={ contractTransactions[0] }
-                />
+                  />
                 <SpotlightStats
                   contractTransactions={ contractTransactions }
-                />
+                  />
+              </div>
+              <div className="spotlightPlots" style={{display: 'none'}}>
+                <h2>Bill's Stats</h2>
+                <div>🚧 Under Construction 🚧</div>
               </div>
               <div className="arrowContainer">
                 <Link className="arrowSubContainer" to="/ranking">

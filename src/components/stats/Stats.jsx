@@ -74,198 +74,7 @@ export default function Stats() {
       : <div>
           <h1>Bill´s Overall Stats</h1>
           <div className="graphsContainer">
-            <Plot
-              data={[
-                {
-                  x: datesArray,
-                  y: accumUniqueWallets,
-                  type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    size: 7,
-                    line: {
-                      width: 0.5
-                    },
-                    opacity: 0.8,
-                    color: '#09f'
-                  }
-                }
-              ]}
-              layout={ {
-                margin: {
-                  l: 80,
-                  r: 80,
-                  t: 100,
-                  b: 60
-                },
-                xaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  title: {
-                    text: 'Date',
-                    standoff: 15
-                  },
-                  tickfont: {
-                    size: 10
-                  }
-                },
-                yaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  rangemode: 'tozero',
-                  autorange: true,
-                  title: {
-                    text: "Number of Unique Wallets",
-                    standoff: 10,
-                  }
-                },
-                width: 900, height: 500, title: 'Number of Unique Wallets Who Ever Purchased Bills', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
-              style={{border: '2px solid white'}} // adds style to the plotly container div
-            />
-            <Plot
-              data={[
-                {
-                  x: datesArray,
-                  y: dailyUniqueWallets,
-                  type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    size: 7,
-                    line: {
-                      width: 0.5
-                    },
-                    opacity: 0.8,
-                    color: '#4cff05'
-                  }
-                }
-              ]}
-              layout={ {
-              margin: {
-                l: 80,
-                r: 80,
-                t: 100,
-                b: 60
-              },
-              xaxis: {
-                automargin: true,
-                showgrid: false,
-                title: {
-                  text: 'Date',
-                  standoff: 15
-                },
-                tickfont: {
-                  size: 10
-                }
-              },
-              yaxis: {
-                automargin: true,
-                showgrid: false,
-                rangemode: 'tozero',
-                autorange: true,
-                title: {
-                  text: "Unique Wallets Per Day",
-                  standoff: 10,
-                }
-              },
-                width: 900, height: 500, title: 'Wallets Purchasing Bills Each Day', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
-              style={{border: '2px solid white'}} // adds style to the plotly container div
-            />
-            <Plot
-              data={[
-                {
-                  x: datesArray,
-                  y: dailyAccumBillsSold,
-                  type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    size: 7,
-                    line: {
-                      width: 0.5
-                    },
-                    opacity: 0.8,
-                    color: '#ffa600'
-                  }
-                }
-              ]}
-              layout={ {
-                margin: {
-                  l: 80,
-                  r: 80,
-                  t: 100,
-                  b: 60
-                },
-                xaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  title: {
-                    text: 'Date',
-                    standoff: 15
-                  },
-                  tickfont: {
-                    size: 10
-                  }
-                },
-                yaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  rangemode: 'tozero',
-                  autorange: true,
-                  title: {
-                    text: "Number of Bills Sold",
-                    standoff: 10,
-                  }
-                },
-                width: 900, height: 500, title: 'Accumulated Number of Bills Sold Over Time', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
-              style={{border: '2px solid white'}} // adds style to the plotly container div
-            />
-            <Plot
-              data={[
-                {
-                  x: datesArray,
-                  y: dailyBillsSold,
-                  type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    size: 7,
-                    line: {
-                      width: 0.5
-                    },
-                    opacity: 0.8,
-                    color: '#e22f0f'
-                  }
-                }
-              ]}
-              layout={ {
-                margin: {
-                  l: 80,
-                  r: 80,
-                  t: 100,
-                  b: 60
-                },
-                xaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  title: {
-                    text: 'Date',
-                    standoff: 15
-                  },
-                  tickfont: {
-                    size: 10
-                  }
-                },
-                yaxis: {
-                  automargin: true,
-                  showgrid: false,
-                  rangemode: 'tozero',
-                  autorange: true,
-                  title: {
-                    text: "Number of Bills Sold",
-                    standoff: 10,
-                  }
-                },
-                width: 900, height: 500, title: 'Daily Number of Bills Sold', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
-              style={{border: '2px solid white'}} // adds style to the plotly container div
-            />
+            {/*Plot Nº5*/}
             <Plot
               data={[
                 {
@@ -315,6 +124,7 @@ export default function Stats() {
                 width: 900, height: 500, title: 'Accumulated USD Value Sold By Bills (Total Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
+            {/*Plot Nº6*/}
             <Plot
               data={[
                 {
@@ -364,6 +174,7 @@ export default function Stats() {
                 width: 900, height: 500, title: 'USD Value Sold By Bills on Each Day (Daily Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
+            {/*Plot Nº7*/}
             <Plot
               data={[
                 {
@@ -413,6 +224,7 @@ export default function Stats() {
                 width: 900, height: 500, title: 'Accumulated USD Value Payed Out to Bills Buyers (Total Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
+            {/*Plot Nº8*/}
             <Plot
               data={[
                 {
@@ -462,6 +274,7 @@ export default function Stats() {
                 width: 900, height: 500, title: 'USD Value Payed Out to Bills Buyers on Each Day (Daily Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
+            {/*Plot Nº9*/}
             <Plot
               data={[
                 {
@@ -526,9 +339,204 @@ export default function Stats() {
                 plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
-            {console.log(bills.length)}
-            </div>
+            {/*Plot Nº1*/}
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: accumUniqueWallets,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#09f'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Unique Wallets",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Number of Unique Wallets Who Ever Purchased Bills', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            {/*Plot Nº2*/}
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyUniqueWallets,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#4cff05'
+                  }
+                }
+              ]}
+              layout={ {
+              margin: {
+                l: 80,
+                r: 80,
+                t: 100,
+                b: 60
+              },
+              xaxis: {
+                automargin: true,
+                showgrid: false,
+                title: {
+                  text: 'Date',
+                  standoff: 15
+                },
+                tickfont: {
+                  size: 10
+                }
+              },
+              yaxis: {
+                automargin: true,
+                showgrid: false,
+                rangemode: 'tozero',
+                autorange: true,
+                title: {
+                  text: "Unique Wallets Per Day",
+                  standoff: 10,
+                }
+              },
+                width: 900, height: 500, title: 'Wallets Purchasing Bills Each Day', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            {/*Plot Nº3*/}
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyAccumBillsSold,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#ffa600'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Bills Sold",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Accumulated Number of Bills Sold Over Time', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
+            {/*Plot Nº4*/}
+            <Plot
+              data={[
+                {
+                  x: datesArray,
+                  y: dailyBillsSold,
+                  type: 'scatter',
+                  mode: 'lines+markers',
+                  marker: {
+                    size: 7,
+                    line: {
+                      width: 0.5
+                    },
+                    opacity: 0.8,
+                    color: '#e22f0f'
+                  }
+                }
+              ]}
+              layout={ {
+                margin: {
+                  l: 80,
+                  r: 80,
+                  t: 100,
+                  b: 60
+                },
+                xaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  title: {
+                    text: 'Date',
+                    standoff: 15
+                  },
+                  tickfont: {
+                    size: 10
+                  }
+                },
+                yaxis: {
+                  automargin: true,
+                  showgrid: false,
+                  rangemode: 'tozero',
+                  autorange: true,
+                  title: {
+                    text: "Number of Bills Sold",
+                    standoff: 10,
+                  }
+                },
+                width: 900, height: 500, title: 'Daily Number of Bills Sold', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+              style={{border: '2px solid white'}} // adds style to the plotly container div
+            />
           </div>
+        </div>
   )
 }
 

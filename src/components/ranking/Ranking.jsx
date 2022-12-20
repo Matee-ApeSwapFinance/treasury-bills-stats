@@ -80,6 +80,7 @@ export default function Ranking() {
             handleSort={ handleSort }
             sortMethod={ sortMethod }
           />
+          {console.log(filteredRankingData.length)}
         </div>
   )
 }

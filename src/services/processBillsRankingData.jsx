@@ -15,6 +15,7 @@ export default function processBillsRankingData (data) {
         duration: '',
         acquiredValue: 0,
         vestedValue: 0,
+        vestingTime: transaction.vestingTime,
         ROI: ''
       })
     }

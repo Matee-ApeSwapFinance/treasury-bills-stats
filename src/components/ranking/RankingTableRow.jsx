@@ -17,6 +17,7 @@ export default function RankingTableRow({ bill }) {
         <td>{ bill?.duration } days</td>
         <td>{ toDollarFormatter.format(bill?.acquiredValue) }</td>
         <td>{ toDollarFormatter.format(bill?.vestedValue) }</td>
+        <td>{ bill?.vestingTime } days</td>
         <td>{ (Math.round(bill?.ROI * 10000) / 100).toFixed(2)} %</td>
       </tr>
     </Link>

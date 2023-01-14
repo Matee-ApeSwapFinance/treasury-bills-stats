@@ -18,7 +18,7 @@ export default function SpotlightTable ({ dataToDisplay }) {
         {
           dataToDisplay && dataToDisplay.map(transaction =>
             <SpotlightTableRow
-              key={ transaction?.createdAt + transaction?.createdAddressOwner * Math.random() }
+              key={ transaction?.createdAt + transaction?.createdAddressOwner }
               transaction={ transaction }
             />
           )

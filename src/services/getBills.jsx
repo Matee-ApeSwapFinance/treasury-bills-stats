@@ -37,5 +37,10 @@ export default async function getBills () {
       uniqueLegitTransactions.push(uniqueTransactions[i])
     }
   }
+  // Making lowercase all contracts' adresses
+  for (let i = 0; i < uniqueLegitTransactions.length; i++) {
+    uniqueLegitTransactions[i].contractAddress = uniqueLegitTransactions[i].contractAddress.toLowerCase()
+    uniqueLegitTransactions[i].createdAddressOwner = uniqueLegitTransactions[i].createdAddressOwner.toLowerCase()
+  }
   return uniqueLegitTransactions
 }

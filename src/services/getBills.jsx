@@ -1,15 +1,26 @@
 import processBillsRankingData from "./processBillsRankingData"
 
+function shallowCompare(obj1, obj2) {
+  if (Object.keys(obj1).length === Object.keys(obj2).length && Object.keys(obj1).every(key => obj1[key] === obj2[key])) {
+    return true
+  }
+}
+
 export default async function getBills () {
   const response = await fetch('https://api.apeswap.finance/bills/summary')
   const json = await response.json()
+  // Making lowercase all contracts' adresses
+  for (let i = 0; i < json.length; i++) {
+    json[i].contractAddress = json[i].contractAddress.toLowerCase()
+    json[i].createdAddressOwner = json[i].createdAddressOwner.toLowerCase()
+  }
+  // Making uppercase lp and payoutToken
+  for (let i = 0; i < json.length; i++) {
+    json[i].lp = json[i].lp.toUpperCase()
+    json[i].payoutToken = json[i].payoutToken.toUpperCase()
+  }
   // Removing duplicate transactions - Just in case, since sometimes the api brings duplicates
   const uniqueTransactions = []
-  function shallowCompare(obj1, obj2) {
-    if (Object.keys(obj1).length === Object.keys(obj2).length && Object.keys(obj1).every(key => obj1[key] === obj2[key])) {
-      return true
-    }
-  }
   for (let i = 0; i < json.length; i++) {
     if (!uniqueTransactions.find(transaction => shallowCompare(transaction, json[i]))) {
       uniqueTransactions.push(json[i])
@@ -36,11 +47,6 @@ export default async function getBills () {
     if (!contractsToFilter.find(contract => contract == uniqueTransactions[i].contractAddress)) {
       uniqueLegitTransactions.push(uniqueTransactions[i])
     }
-  }
-  // Making lowercase all contracts' adresses
-  for (let i = 0; i < uniqueLegitTransactions.length; i++) {
-    uniqueLegitTransactions[i].contractAddress = uniqueLegitTransactions[i].contractAddress.toLowerCase()
-    uniqueLegitTransactions[i].createdAddressOwner = uniqueLegitTransactions[i].createdAddressOwner.toLowerCase()
   }
   return uniqueLegitTransactions
 }

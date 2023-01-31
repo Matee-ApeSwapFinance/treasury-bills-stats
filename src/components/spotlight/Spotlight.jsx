@@ -2,23 +2,11 @@ import { useState, useEffect, useContext } from "react"
 import BillsContext from '../../context/BillsContext'
 import SpotlightTable from './SpotlightTable'
 import extractContractTransactions from '../../services/extractContractTransactions'
-import Lottie from 'lottie-react'
-import Spinner from '../../assets/spinner.json'
 import getBills from "../../services/getBills"
 import { Link } from 'wouter'
 import left_arrow from '../../assets/left_arrow.svg'
 import SpotlightSummary from "./SpotlightSummary"
 import SpotlightStats from "./SpotlightStats"
-import dropUnwantedBills from "../../services/dropUnwantedBills"
-
-const options = {
-  animationData: Spinner,
-  autoplay: true,
-  loop: false,
-  style: {
-    width: '20%'
-  }
-}
 
 export default function({ params }) {
 
@@ -50,7 +38,7 @@ export default function({ params }) {
   return (
     loading
       ? <div className="loadingPage">
-          <Lottie {...options}/>
+          <span class="loader"></span>
           <h1>Fetching Data</h1>
         </div>
       : contract == 'nocontract'

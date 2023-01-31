@@ -1,4 +1,3 @@
-import './App.css'
 import { Route } from 'wouter'
 import NavBar from './components/navbar/NavBar'
 import Stats from './components/stats/Stats'

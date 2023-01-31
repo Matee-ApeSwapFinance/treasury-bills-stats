@@ -1,21 +1,9 @@
 import { useState, useEffect, useContext } from "react"
 import RankingTable from "./RankingTable"
-import Lottie from 'lottie-react'
-import Spinner from '../../assets/spinner.json'
 import BillsContext from '../../context/BillsContext'
 import processBillsRankingData from '../../services/processBillsRankingData'
 import getBills from "../../services/getBills"
 import SearchSlot from "./SearchSlot"
-import dropUnwantedBills from "../../services/dropUnwantedBills"
-
-const options = {
-  animationData: Spinner,
-  autoplay: true,
-  loop: false,
-  style: {
-    width: '20%'
-  }
-}
 
 export default function Ranking() {
 
@@ -68,7 +56,7 @@ export default function Ranking() {
   return(
     loading
       ? <div className="loadingPage">
-          <Lottie {...options}/>
+          <span class="loader"></span>
           <h1>Fetching Data</h1>
         </div>
       : <div className="ranking">

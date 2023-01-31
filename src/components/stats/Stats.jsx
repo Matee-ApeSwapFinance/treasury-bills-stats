@@ -1,22 +1,9 @@
 import { useContext, useEffect } from "react"
 import BillsContext from '../../context/BillsContext'
 import getBills from "../../services/getBills"
-import Lottie from 'lottie-react'
-import Spinner from '../../assets/spinner.json'
-// import dropUnwantedBills from "../../services/dropUnwantedBills"
 import Plot from 'react-plotly.js'
 import calculateDataForPlots from "../../services/calculateDataForPlots"
 import { useState } from "react"
-
-
-const options = {
-  animationData: Spinner,
-  autoplay: true,
-  loop: false,
-  style: {
-    width: '20%'
-  }
-}
 
 export default function Stats() {
   const {bills, setBills, loading, setLoading} = useContext(BillsContext)
@@ -68,7 +55,7 @@ export default function Stats() {
   return (
     loading
       ? <div className="loadingPage">
-          <Lottie {...options}/>
+          <span class="loader"></span>
           <h1>Fetching Data</h1>
         </div>
       : <div>

@@ -7,7 +7,8 @@ function shallowCompare(obj1, obj2) {
 }
 
 export default async function getBills () {
-  const response = await fetch('https://api.apeswap.finance/bills/summary')
+  // const response = await fetch('https://api.apeswap.finance/bills/summary')
+  const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary')
   const json = await response.json()
   // Making lowercase all contracts' adresses
   for (let i = 0; i < json.length; i++) {

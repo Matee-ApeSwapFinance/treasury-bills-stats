@@ -56,7 +56,7 @@ export default function Ranking() {
   return(
     loading
       ? <div className="loadingPage">
-          <span class="loader"></span>
+          <span className="loader"></span>
           <h1>Fetching Data</h1>
         </div>
       : <div className="ranking">

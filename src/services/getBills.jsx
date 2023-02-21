@@ -7,14 +7,17 @@ function shallowCompare(obj1, obj2) {
 }
 
 export default async function getBills () {
-  // const response = await fetch('https://api.apeswap.finance/bills/summary')
-  const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary')
+  const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api
+  // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') Obie's provisional api
+  // response = await fetch('https://apeswap-api-v2-pr-25.herokuapp.com/bills/summary') // Agus' api
   const json = await response.json()
+
   // Making lowercase all contracts' adresses
   for (let i = 0; i < json.length; i++) {
-    json[i].contractAddress = json[i].contractAddress.toLowerCase()
-    json[i].createdAddressOwner = json[i].createdAddressOwner.toLowerCase()
+    json[i].contractAddress = json[i].contractAddress?.toLowerCase()
+    json[i].createdAddressOwner = json[i].createdAddressOwner?.toLowerCase()
   }
+
   // Making uppercase lp and payoutToken
   for (let i = 0; i < json.length; i++) {
     json[i].lp = json[i].lp.toUpperCase()

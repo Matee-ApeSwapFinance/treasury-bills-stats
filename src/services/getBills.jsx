@@ -7,12 +7,23 @@ function shallowCompare(obj1, obj2) {
 }
 
 export default async function getBills () {
-  const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api
+  const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api -> Taken over by Obie
   // const response = await fetch('https://apeswap-api-staging.herokuapp.com/bills/summary') // Obie's staging api
   // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') // Obie's provisional api
   // response = await fetch('https://apeswap-api-v2-pr-25.herokuapp.com/bills/summary') // Agus' api
-  const json = await response.json()
-  console.log(json.length)
+  let json = await response.json()
+  console.log(json.length) // 24/02/2023 12:06 -> 4546 transactions
+
+  // Filtering out faulty transactions
+  
+  const completeTransactions = []
+  for (let i = 0; i < json.length; i++) {
+    if (Object.keys(json[i]).length == 12) {
+      completeTransactions.push(json[i])
+    }
+  }
+
+  json = completeTransactions
 
   // Making lowercase all contracts' adresses
   for (let i = 0; i < json.length; i++) {

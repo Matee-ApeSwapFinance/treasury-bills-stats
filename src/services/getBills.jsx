@@ -12,7 +12,6 @@ export default async function getBills () {
   // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') // Obie's provisional api
   // response = await fetch('https://apeswap-api-v2-pr-25.herokuapp.com/bills/summary') // Agus' api
   let json = await response.json()
-  console.log(json.length) // 24/02/2023 12:06 -> 4546 transactions
 
   // Filtering out faulty transactions
   

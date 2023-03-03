@@ -7,12 +7,14 @@ function shallowCompare(obj1, obj2) {
 }
 
 export default async function getBills () {
-  const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api -> Taken over by Obie
+  // const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api -> Taken over by Obie
   // const response = await fetch('https://apeswap-api-staging.herokuapp.com/bills/summary') // Obie's staging api
   // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') // Obie's provisional api
-  // response = await fetch('https://apeswap-api-v2-pr-25.herokuapp.com/bills/summary') // Agus' api
-  let json = await response.json()
+  const response = await fetch('https://apeswap-api-v2-pr-25.herokuapp.com/bills/summary') // Agus' api
 
+  const jsonBody = await response.json()
+  let json = jsonBody.purchases
+  console.log(json.length)
   // Filtering out faulty transactions
   
   const completeTransactions = []

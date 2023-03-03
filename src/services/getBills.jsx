@@ -10,7 +10,7 @@ export default async function getBills () {
   // const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api -> Taken over by Obie
   // const response = await fetch('https://apeswap-api-staging.herokuapp.com/bills/summary') // Obie's staging api
   // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') // Obie's provisional api
-  const response = await fetch('https://api-v2-staging.apeswap.finance/bills/summary') // Agus' staging api
+  const response = await fetch('https://api-v2.apeswap.finance/bills/summary') // Agus' final prod v2 api
 
   const jsonBody = await response.json()
   let json = jsonBody.purchases

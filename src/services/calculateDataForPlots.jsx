@@ -8,15 +8,16 @@ export default function calculateDataForPlots (data) {
       const date = new Date(timestamp)
       timestamp = Math.floor(date.getTime() / 1000)
     }
-    const secondsTimestamp = (String(timestamp).length == 10) ? (timestamp * 1000) : timestamp
-    timestamps.push(secondsTimestamp)
+    const miliSecondsTimestamp = (String(timestamp).length == 10) ? (timestamp * 1000) : timestamp
+    timestamps.push(miliSecondsTimestamp)
   }
 
   // Obtaining the number of days since Bills' sales started untill today:
-  const minDate = Math.min(parseInt(timestamps))
-  const now = Date.now()
-  const elapsedTime = parseInt(now) - parseInt(minDate)
-  const daysPassed = Math.ceil(elapsedTime / 86400000)
+  const minDate = (Math.floor(Math.min(parseInt(timestamps)) / 86400000)) * 86400000
+  const now = Math.ceil(Date.now() / 86400000) * 86400000
+  
+  const elapsedTime = now - minDate
+  const daysPassed = elapsedTime / 86400000
 
   // Declaring Arrays to fill over the cycles:
   const dailyDates = [] // For all plots
@@ -59,9 +60,9 @@ export default function calculateDataForPlots (data) {
         const date = new Date(timestamp)
         timestamp = Math.floor(date.getTime() / 1000)
       }
-      const secondsTimestamp = (String(timestamp).length == 10) ? (timestamp * 1000) : timestamp
+      const miliSecondsTimestamp = (String(timestamp).length == 10) ? (timestamp * 1000) : timestamp
       // If transaction occured during the current day:
-      if (secondsTimestamp > (incrementalTime - 86400000) && secondsTimestamp <= incrementalTime) {
+      if (miliSecondsTimestamp >= (incrementalTime) && miliSecondsTimestamp < (incrementalTime + 86400000) ) {
         accumBillsCount ++
         dayBillsCount ++
         accumDollarAcquiredValue += data[j].dollarValue

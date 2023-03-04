@@ -14,7 +14,7 @@ export default async function getBills () {
 
   const jsonBody = await response.json()
   let json = jsonBody.purchases
-  console.log(json.length)
+  
   // Filtering out faulty transactions
   
   const completeTransactions = []

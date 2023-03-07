@@ -2,11 +2,12 @@ import { useState, useEffect, useContext } from "react"
 import BillsContext from '../../context/BillsContext'
 import SpotlightTable from './SpotlightTable'
 import extractContractTransactions from '../../services/extractContractTransactions'
-import getBills from "../../services/getBills"
+import { getBills } from "../../services/getBills"
 import { Link } from 'wouter'
 import left_arrow from '../../assets/left_arrow.svg'
 import SpotlightSummary from "./SpotlightSummary"
 import SpotlightStats from "./SpotlightStats"
+import { getSummary } from "../../services/getSummary"
 
 export default function({ params }) {
 
@@ -16,11 +17,13 @@ export default function({ params }) {
     // const data = await dropUnwantedBills(await getBills())
     const data = await getBills()
     setBills(data)
+    const data2 = await getSummary()
+    setSummary(data2)
     setLoading(false)
   }
 
   const { contract } = params
-  const {bills, setBills, loading, setLoading} = useContext(BillsContext)
+  const {bills, setBills, summary, setSummary, loading, setLoading} = useContext(BillsContext)
   const [contractTransactions, setContractTransactions] = useState([])
 
   useEffect(() => {

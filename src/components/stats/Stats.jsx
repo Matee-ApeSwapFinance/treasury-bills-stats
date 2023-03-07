@@ -1,12 +1,13 @@
 import { useContext, useEffect } from "react"
 import BillsContext from '../../context/BillsContext'
-import getBills from "../../services/getBills"
+import { getBills } from "../../services/getBills"
 import Plot from 'react-plotly.js'
 import calculateDataForPlots from "../../services/calculateDataForPlots"
 import { useState } from "react"
+import { getSummary } from "../../services/getSummary"
 
 export default function Stats() {
-  const {bills, setBills, loading, setLoading} = useContext(BillsContext)
+  const {bills, setBills, summary, setSummary, loading, setLoading} = useContext(BillsContext)
 
   const [datesArray, setDatesArray] = useState([])
   const [accumUniqueWallets, setAccumUniqueWallets] = useState([])
@@ -26,6 +27,8 @@ export default function Stats() {
     // const data = await dropUnwantedBills(await getBills())
     const data = await getBills()
     setBills(data)
+    const data2 = await getSummary()
+    setSummary(data2)
     setLoading(false)
   }
 

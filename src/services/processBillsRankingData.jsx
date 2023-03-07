@@ -1,9 +1,12 @@
-export default function processBillsRankingData (data) {
+export default function processBillsRankingData (bills, summary = []) {
   let processedData = []
-  for (let i = 0; i < data.length; i++) {
-    const transaction = data[i]
+  for (let i = 0; i < bills.length; i++) {
+    const transaction = bills[i]
     if (!processedData.find(obj => obj.contract == transaction.contractAddress)) {
       processedData.push({
+        soldPercentage: 0,
+        tokensRemaining: 0,
+        tokensPurchased: 0,
         contract: transaction.contractAddress,
         lp: transaction.lp,
         token: transaction.payoutToken,
@@ -23,9 +26,9 @@ export default function processBillsRankingData (data) {
   for (let i = 0; i < processedData.length; i++) {
     const contract = processedData[i].contract
     const timestamps = []
-    for (let j = 0; j < data.length; j++) {
-      const transaction = data[j]
-      let timestamp = data[j].createdAt
+    for (let j = 0; j < bills.length; j++) {
+      const transaction = bills[j]
+      let timestamp = bills[j].createdAt
       if (transaction.contractAddress == contract) {
         if(String(timestamp).includes(' ')) {
           const date = new Date(timestamp)
@@ -114,5 +117,15 @@ export default function processBillsRankingData (data) {
     }
   }
 
+  // Assigns summary's selling progress into the processedData summary:
+  for (let i = 0; i < processedData.length; i++) {
+    for (let j = 0; j < summary.length; j++) {
+      if (processedData[i].contract == summary[j].contract) {
+        processedData[i].tokensRemaining = summary[j].tokensRemaining
+        processedData[i].tokensPurchased = summary[j].tokensPurchased
+        processedData[i].soldPercentage = summary[j].soldPercentage
+      }
+    }
+  }
   return processedData
 }

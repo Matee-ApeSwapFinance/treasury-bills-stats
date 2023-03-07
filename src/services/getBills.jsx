@@ -6,13 +6,14 @@ function shallowCompare(obj1, obj2) {
   }
 }
 
-export default async function getBills () {
+export async function getBills () {
   // const response = await fetch('https://api.apeswap.finance/bills/summary') // Original Casors prod api -> Taken over by Obie
   // const response = await fetch('https://apeswap-api-staging.herokuapp.com/bills/summary') // Obie's staging api
   // const response = await fetch('https://apeswap-api-development.herokuapp.com/bills/summary') // Obie's provisional api
   const response = await fetch('https://api-v2.apeswap.finance/bills/summary') // Agus' final prod v2 api
 
   const jsonBody = await response.json()
+
   let json = jsonBody.purchases
   
   // Filtering out faulty transactions
@@ -26,7 +27,7 @@ export default async function getBills () {
 
   json = completeTransactions
 
-  // Making lowercase all contracts' adresses
+  // Making lowercase all contracts' addresses
   for (let i = 0; i < json.length; i++) {
     json[i].contractAddress = json[i].contractAddress?.toLowerCase()
     json[i].createdAddressOwner = json[i].createdAddressOwner?.toLowerCase()
@@ -68,3 +69,4 @@ export default async function getBills () {
   }
   return uniqueLegitTransactions
 }
+

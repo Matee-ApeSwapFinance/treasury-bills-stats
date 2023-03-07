@@ -9,7 +9,7 @@ export async function getSummary () {
 
   for (let i = 0; i < summary.length; i++) {
     const soldPercentage = (summary[i].tokensPurchased / (summary[i].tokensPurchased + summary[i].tokensRemaining)) * 100 
-    const soldPercentageToShip = (soldPercentage > 98.6) ? 100 : soldPercentage
+    const soldPercentageToShip = (soldPercentage > 98) ? 100 : soldPercentage
 
     reducedSummary.push({
       contract: summary[i].contract.toLowerCase(),

@@ -15,7 +15,8 @@ export async function getSummary () {
       contract: summary[i].contract.toLowerCase(),
       tokensPurchased: summary[i].tokensPurchased,
       tokensRemaining: summary[i].tokensRemaining,
-      soldPercentage: parseFloat(soldPercentageToShip.toFixed(1))
+      soldPercentage: parseFloat(soldPercentageToShip.toFixed(1)),
+      type: summary[i].type
     })
   }
 

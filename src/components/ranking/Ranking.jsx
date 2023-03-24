@@ -6,6 +6,7 @@ import { getBills } from "../../services/getBills"
 import SearchSlot from "./SearchSlot"
 import { getSummary } from "../../services/getSummary"
 import SaleStatusFilter from "./SaleStatusFilter"
+import BillTypeFilter from "./BillTypeFilter"
 
 export default function Ranking() {
 
@@ -29,7 +30,7 @@ export default function Ranking() {
     }
   }
 
-  const handleFilter = (filter, selectFilter, data) => {
+  const handleFilter = (filter, selectFilter, selectBillTypeFilter, data) => {
     let filtered = data.filter(obj => String(obj.token).toLowerCase().includes(String(filter).toLowerCase()) || String(obj.lp).toLowerCase().includes(String(filter).toLowerCase()))
     filtered = filtered.filter(obj => {
       if (selectFilter == 'all') {
@@ -40,6 +41,15 @@ export default function Ranking() {
         return obj.soldPercentage == 100
       }
     })
+    filtered = filtered.filter(obj => {
+      if (selectBillTypeFilter == 'all') {
+        return true
+      } else if (selectBillTypeFilter == 'jungleBills') {
+        return obj.type == 'JUNGLE BILL'
+      } else if (selectBillTypeFilter == 'bananaBills') {
+        return obj.type == 'BANANA BILL'
+      }
+    })
     return filtered
   }
 
@@ -47,6 +57,7 @@ export default function Ranking() {
   const [rankingData, setRankingData] = useState([])
   const [filterString, setFilterString] = useState()
   const [selectFilter, setSelectFilter] = useState('all')
+  const [selectBillTypeFilter, setSelectBillTypeFilter] = useState('all')
   const [filteredRankingData, setFilteredRankingData] = useState([])
   const [sortMethod, setSortMethod] = useState({method: 'ROI', descending: true})
 
@@ -64,8 +75,8 @@ export default function Ranking() {
   }, [])
 
   useEffect(() => {
-    setFilteredRankingData(handleFilter(filterString, selectFilter, rankingData))
-  }, [filterString, selectFilter])
+    setFilteredRankingData(handleFilter(filterString, selectFilter, selectBillTypeFilter, rankingData))
+  }, [filterString, selectFilter, selectBillTypeFilter])
 
 
   return(
@@ -76,6 +87,9 @@ export default function Ranking() {
         </div>
       : <div className="ranking">
           <div className="searchOptions">
+            <BillTypeFilter
+              setSelectBillTypeFilter={ setSelectBillTypeFilter }
+            />
             <SaleStatusFilter
               setSelectFilter={ setSelectFilter }
             />

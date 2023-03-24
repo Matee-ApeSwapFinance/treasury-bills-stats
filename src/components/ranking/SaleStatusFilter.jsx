@@ -6,7 +6,7 @@ export default function SaleStatusFilter( { setSelectFilter }) {
 
   return(
     <div className="saleStatusFilter">
-      <label className="saleStatusLabel" htmlFor="saleStatus">Select selling status: </label>
+      <label className="saleStatusLabel" htmlFor="saleStatus">Filter by selling status: </label>
       <select className="saleStatusSelectMenu" onChange={handleChange} name="saleStatus" id="saleStatus">
         <option value="all">All</option>
         <option value="onSale">On Sale</option>

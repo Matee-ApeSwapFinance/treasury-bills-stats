@@ -4,6 +4,7 @@ export default function processBillsRankingData (bills, summary = []) {
     const transaction = bills[i]
     if (!processedData.find(obj => obj.contract == transaction.contractAddress)) {
       processedData.push({
+        initialTokensValue: 0,
         soldPercentage: 0,
         tokensRemaining: 0,
         tokensPurchased: 0,
@@ -124,8 +125,24 @@ export default function processBillsRankingData (bills, summary = []) {
         processedData[i].tokensRemaining = summary[j].tokensRemaining
         processedData[i].tokensPurchased = summary[j].tokensPurchased
         processedData[i].soldPercentage = summary[j].soldPercentage
+        processedData[i].type = summary[j].type
       }
     }
   }
+
+  // Assigns initial tokens value into the processedData summary:
+  for (let i = 0; i < processedData.length; i++) {
+    let trial = 0
+    for (let j = 0; j < bills.length; j++) {
+      if (processedData[i].contract == bills[j].contractAddress) {
+        const initialTokens = processedData[i].tokensRemaining + processedData[i].tokensPurchased
+        processedData[i].initialTokensValue = bills[j].payoutTokenPrice * initialTokens
+        if (processedData[i].initialTokensValue > 100) { break }
+        trial++
+        if (trial === 3) { break }
+      }
+    }
+  }
+
   return processedData
 }

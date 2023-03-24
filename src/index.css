@@ -339,17 +339,17 @@ thead tr {
   gap: 5rem;
 }
 
-.saleStatusFilter {
+.saleStatusFilter, .billTypeFilter {
   display: flex;
   align-items: center;
   gap: 2rem;
 }
 
-.saleStatusLabel {
+.saleStatusLabel, .billTypeLabel {
   font-style: italic;
 }
 
-.saleStatusSelectMenu {
+.saleStatusSelectMenu, .billTypeSelectMenu {
   -webkit-appearance:none; 
   -moz-appearance:none; 
   appearance:none;

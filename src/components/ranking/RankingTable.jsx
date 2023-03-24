@@ -24,13 +24,15 @@ export default function RankingTable({ dataToDisplay, handleSort, sortMethod }) 
       <thead>
         <tr>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'soldPercentage')} style={{width: '160px'}}><img className="pointer" src={pointer} />Sold Percentage</th>
+          <th className="th" onClick={(e) => handleSelectHeader(e, 'type')}><img className="pointer" src={pointer} />Bill Type</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'lp')}><img className="pointer" src={pointer} />LP Pair</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'lpRound')}><img className="pointer" src={pointer} />LP Round</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'token')}><img className="pointer" src={pointer} />Payout Token</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'tokenRound')}><img className="pointer" src={pointer} />Token Round</th>
-          <th className="th" onClick={(e) => handleSelectHeader(e, 'startTimestamp')}><img className="pointer" src={pointer} />Started / First Purchase</th>
-          <th className="th" onClick={(e) => handleSelectHeader(e, 'endTimestamp')}><img className="pointer" src={pointer} />Ended / Last Purchase</th>
+          <th className="th" onClick={(e) => handleSelectHeader(e, 'startTimestamp')}><img className="pointer" src={pointer} />First Purchase</th>
+          <th className="th" onClick={(e) => handleSelectHeader(e, 'endTimestamp')}><img className="pointer" src={pointer} />Last Purchase</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'duration')}><img className="pointer" src={pointer} />Duration</th>
+          <th className="th" onClick={(e) => handleSelectHeader(e, 'initialTokensValue')}><img className="pointer" src={pointer} />Initial Token's Value</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'acquiredValue')}><img className="pointer" src={pointer} />Acquired Value</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'vestedValue')}><img className="pointer" src={pointer} />Vested Value</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'vestingTime')}><img className="pointer" src={pointer} />Vesting Time</th>

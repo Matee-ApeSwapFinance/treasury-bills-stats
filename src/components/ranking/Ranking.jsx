@@ -83,7 +83,7 @@ export default function Ranking() {
     loading
       ? <div className="loadingPage">
           <span className="loader"></span>
-          <h1>Fetching Data</h1>
+          <h1>Processing Data</h1>
         </div>
       : <div className="ranking">
           <div className="searchOptions">

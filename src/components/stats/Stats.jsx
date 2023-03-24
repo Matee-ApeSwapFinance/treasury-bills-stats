@@ -59,7 +59,7 @@ export default function Stats() {
     loading
       ? <div className="loadingPage">
           <span className="loader"></span>
-          <h1>Fetching Data</h1>
+          <h1>Processing Data</h1>
         </div>
       : <div>
           <h1>Bill´s Overall Stats</h1>

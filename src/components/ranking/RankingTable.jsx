@@ -36,7 +36,7 @@ export default function RankingTable({ dataToDisplay, handleSort, sortMethod }) 
           <th className="th" onClick={(e) => handleSelectHeader(e, 'acquiredValue')}><img className="pointer" src={pointer} />Acquired Value</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'vestedValue')}><img className="pointer" src={pointer} />Vested Value</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'vestingTime')}><img className="pointer" src={pointer} />Vesting Time</th>
-          <th className="th active-th" onClick={(e) => handleSelectHeader(e, 'ROI')}><img className="pointer active descending" src={pointer} />ROI</th>
+          <th className="th active-th" onClick={(e) => handleSelectHeader(e, 'ROI')}><img className="pointer active descending" src={pointer} />R.O.E.</th>
         </tr>
       </thead>
       <tbody>

@@ -27,7 +27,7 @@ export default function SpotlightStats({ contractTransactions }) {
         Total Vested Value: { toCentsFormatter.format(getTotalVestedValue(contractTransactions)) }
       </div>
       <div>
-        ROI: { (Math.round(getTotalAcquiredValue(contractTransactions) / getTotalVestedValue(contractTransactions) * 10000) / 100).toFixed(2) }%
+        R.O.E.: { (Math.round(getTotalAcquiredValue(contractTransactions) / getTotalVestedValue(contractTransactions) * 10000) / 100).toFixed(2) }%
       </div>
     </div>
   )

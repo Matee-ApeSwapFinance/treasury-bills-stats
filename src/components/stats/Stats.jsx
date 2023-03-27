@@ -325,7 +325,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: `ROI Per Day (Daily Acquired Value / Daily Vested Value) | Average ROI: %${overallRoi}`,
+                width: 900, height: 500, title: `R.O.E. Per Day (Daily Acquired Value / Daily Vested Value) | Average R.O.E.: %${overallRoi}`,
                 plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />

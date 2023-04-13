@@ -6,7 +6,7 @@ export default function SpotlightTable ({ dataToDisplay }) {
       <thead>
         <tr>
           <th>Buyer Address</th>
-          <th>Bill NFT ID</th>
+          <th>Bond NFT ID</th>
           <th>Created</th>
           <th>LPs deposited</th>
           <th>Tokens Payed Out</th>

@@ -62,7 +62,7 @@ export default function Stats() {
           <h1>Processing Data</h1>
         </div>
       : <div>
-          <h1>Bill´s Overall Stats</h1>
+          <h1>ApeSwap Bonds' Overall Stats</h1>
           <div className="graphsContainer">
             {/*Plot Nº5*/}
             <Plot
@@ -111,7 +111,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'Accumulated USD Value Sold By Bills (Total Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'Accumulated USD Value Sold By Bonds (Total Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº6*/}
@@ -161,7 +161,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'USD Value Sold By Bills on Each Day (Daily Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'USD Value Sold By Bonds on Each Day (Daily Acquired Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº7*/}
@@ -211,7 +211,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'Accumulated USD Value Payed Out to Bills Buyers (Total Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: "Accumulated USD Value Payed Out to Bonds' Buyers (Total Vested Value)", plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº8*/}
@@ -261,7 +261,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'USD Value Payed Out to Bills Buyers on Each Day (Daily Vested Value)', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: "USD Value Payed Out to Bonds' Buyers on Each Day (Daily Vested Value)", plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº9*/}
@@ -321,7 +321,7 @@ export default function Stats() {
                   rangemode: 'tozero',
                   autorange: true,
                   title: {
-                    text: "ROI",
+                    text: "R.O.E.",
                     standoff: 10,
                   }
                 },
@@ -375,7 +375,7 @@ export default function Stats() {
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'Number of Unique Wallets Who Ever Purchased Bills', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'Number of Unique Wallets Who Ever Purchased ApeSwap Bonds', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº2*/}
@@ -424,7 +424,7 @@ export default function Stats() {
                   standoff: 10,
                 }
               },
-                width: 900, height: 500, title: 'Wallets Purchasing Bills Each Day', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'Wallets Purchasing Bonds Each Day', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº3*/}
@@ -469,11 +469,11 @@ export default function Stats() {
                   rangemode: 'tozero',
                   autorange: true,
                   title: {
-                    text: "Number of Bills Sold",
+                    text: "Number of Bonds Sold",
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'Accumulated Number of Bills Sold Over Time', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'Accumulated Number of Bonds Sold Over Time', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
             {/*Plot Nº4*/}
@@ -518,27 +518,14 @@ export default function Stats() {
                   rangemode: 'tozero',
                   autorange: true,
                   title: {
-                    text: "Number of Bills Sold",
+                    text: "Number of Bonds Sold",
                     standoff: 10,
                   }
                 },
-                width: 900, height: 500, title: 'Daily Number of Bills Sold', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
+                width: 900, height: 500, title: 'Daily Number of Bonds Sold', plot_bgcolor:"#faefddf8", paper_bgcolor:"#242424", font: {color: '#fff'}} }
               style={{border: '2px solid white'}} // adds style to the plotly container div
             />
           </div>
         </div>
   )
 }
-
-/*
-Further ideas:
-Evolution of unique wallets interacting over time - LISTO
-Daily wallets purchasing bills - LISTO
-Evolution of Total number of bills purchased over time - LISTO
-Daily number of bills sold - LISTO
-Evolution of total acquired USD amount over time - LISTO
-Daily acquired usd value - LISTO
-Evolution of total vested USD amount over time - LISTO
-Daily vested usd value - LISTO
-Daily Roi - LISTO
-*/

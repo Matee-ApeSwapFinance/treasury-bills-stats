@@ -2,7 +2,7 @@ export default function SpotlightSummary({ contractDetails }) {
   return (
     <div className="spotlightSummary">
       <div>
-        Bill Contract: { contractDetails?.contractAddress }
+        Bond Contract: { contractDetails?.contractAddress }
       </div>
       <div>
         LP Pair: { contractDetails?.lp }

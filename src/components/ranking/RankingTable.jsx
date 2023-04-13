@@ -24,7 +24,7 @@ export default function RankingTable({ dataToDisplay, handleSort, sortMethod }) 
       <thead>
         <tr>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'soldPercentage')} style={{width: '160px'}}><img className="pointer" src={pointer} />Sold Percentage</th>
-          <th className="th" onClick={(e) => handleSelectHeader(e, 'type')}><img className="pointer" src={pointer} />Bill Type</th>
+          <th className="th" onClick={(e) => handleSelectHeader(e, 'type')}><img className="pointer" src={pointer} />Bond Type</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'lp')}><img className="pointer" src={pointer} />LP Pair</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'lpRound')}><img className="pointer" src={pointer} />LP Round</th>
           <th className="th" onClick={(e) => handleSelectHeader(e, 'token')}><img className="pointer" src={pointer} />Payout Token</th>

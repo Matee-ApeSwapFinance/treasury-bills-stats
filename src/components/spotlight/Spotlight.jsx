@@ -46,11 +46,11 @@ export default function({ params }) {
         </div>
       : contract == 'nocontract'
           ? <h1>
-              Please select a Bill from Ranking page !
+              Please select a Bond from the Ranking page !
             </h1>
           : <div className="spotlight">
               <h1>
-                Bill´s Spotlight
+                ApeSwap Bond's Spotlight
               </h1>
               <div className="spotlightInformation">
                 <SpotlightSummary
@@ -61,16 +61,16 @@ export default function({ params }) {
                   />
               </div>
               <div className="spotlightPlots" style={{display: 'none'}}>
-                <h2>Bill's Stats</h2>
+                <h2>Bond's Stats</h2>
                 <div>🚧 Under Construction 🚧</div>
               </div>
               <div className="arrowContainer">
                 <Link className="arrowSubContainer" to="/ranking">
                   <img className="leftArrow" src={left_arrow}/>
-                  <span>Back to Bills Ranking</span>
+                  <span>Back to Bonds' Ranking</span>
                 </Link>
               </div>
-              <h2>Bill's Transactions</h2>
+              <h2>Bond's Transactions</h2>
               <div>
                 <SpotlightTable
                   dataToDisplay={ contractTransactions }
@@ -79,7 +79,7 @@ export default function({ params }) {
               <div className="arrowContainer">
                 <Link className="arrowSubContainer" to="/ranking">
                   <img className="leftArrow" src={left_arrow}/>
-                  <span>Back to Bills Ranking</span>
+                  <span>Back to Bond's Ranking</span>
                 </Link>
               </div>
             </div>

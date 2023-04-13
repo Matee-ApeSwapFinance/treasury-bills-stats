@@ -24,8 +24,8 @@ export default function SearchSlot( { setFilterString }) {
 
   return(
     <div className="search">
-      <label className="searchLabel" htmlFor="query">Search Bills :</label>
-      <input onChange={(e) => handleInput(e)} placeholder='Enter lp pair or payout token' className="searchSlot" name="query" type="text" />
+      <label className="searchLabel" htmlFor="query">Search Bonds:</label>
+      <input onChange={(e) => handleInput(e)} placeholder='Enter LP pair or Payout Token' className="searchSlot" name="query" type="text" />
       <span className="emptySearchInput" onClick={handleEmpty}>+</span>
     </div>
   )

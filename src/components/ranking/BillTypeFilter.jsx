@@ -6,11 +6,11 @@ export default function BillTypeFilter( { setSelectBillTypeFilter }) {
 
   return(
     <div className="billTypeFilter"> 
-      <label className="billTypeLabel" htmlFor="billTypeSelect">Filter by bill type: </label>
+      <label className="billTypeLabel" htmlFor="billTypeSelect">Filter by type: </label>
       <select className="billTypeSelectMenu" onChange={handleChange} name="saleStatus" id="billTypeSelect">
         <option value="all">All</option>
-        <option value="bananaBills">Banana Bills</option>
-        <option value="jungleBills">Jungle Bills</option>
+        <option value="bananaBills">ApeSwap</option>
+        <option value="jungleBills">Partner</option>
       </select>
     </div>
   )

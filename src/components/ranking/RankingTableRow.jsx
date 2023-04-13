@@ -18,7 +18,7 @@ export default function RankingTableRow({ bill }) {
           </div>
           { bill?.soldPercentage }%
         </td>
-        <td>{ bill?.type }</td>
+        <td>{ bill?.type === 'JUNGLE BILL' ? 'Partner' : 'ApeSwap' }</td>
         <td>{ bill?.lp }</td>
         <td>{ bill?.lpRound }</td>
         <td>{ bill?.token }</td>
